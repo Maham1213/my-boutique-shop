@@ -1,32 +1,36 @@
 import React, { useState } from 'react';
 import './App.css';
 
+// 9 Working Products with high-quality boutique clothing images (All under Rs. 4000)
 const initialProducts = [
-  { id: 1, name: "Red Floral Dress", price: 3200, img: "https://unsplash.com" },
+  { id: 1, name: "Red Floral Luxury Dress", price: 3200, img: "https://unsplash.com" },
   { id: 2, name: "Black & Maroon Tunic", price: 2800, img: "https://unsplash.com" },
-  { id: 3, name: "Leopard Print Dress", price: 3500, img: "https://unsplash.com" },
-  { id: 4, name: "Elegant Yellow Tunic", price: 2400, img: "https://unsplash.com" }
+  { id: 3, name: "Leopard Print Party Dress", price: 3500, img: "https://unsplash.com" },
+  { id: 4, name: "Elegant Yellow Summer Tunic", price: 2400, img: "https://unsplash.com" },
+  { id: 5, name: "Pastel Mint Green Kurti", price: 1950, img: "https://unsplash.com" },
+  { id: 6, name: "Royal Blue Silk Anarkali", price: 3900, img: "https://unsplash.com" },
+  { id: 7, name: "Traditional Pink Printed Suit", price: 2600, img: "https://unsplash.com" },
+  { id: 8, name: "Classic White Cotton Kurta", price: 1800, img: "https://unsplash.com" },
+  { id: 9, name: "Designer Velvet Shawl Dupatta", price: 3100, img: "https://unsplash.com" }
 ];
 
 function App() {
   const [products, setProducts] = useState(initialProducts);
   const [cart, setCart] = useState([]);
   
-  // New Product Input States
   const [newName, setNewName] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [newImg, setNewImg] = useState('');
 
-  // Function to add your own clothes dynamically
   const handleAddProduct = (e) => {
     e.preventDefault();
     if (!newName || !newPrice) return alert("Please fill Name and Price!");
+    if (Number(newPrice) > 4000) return alert("Assignment restriction: Price must be under Rs. 4000!");
     
     const newProduct = {
       id: Date.now(),
       name: newName,
       price: Number(newPrice),
-      // If no image url is given, it puts a beautiful default boutique placeholder
       img: newImg || "https://unsplash.com"
     };
 
@@ -60,22 +64,22 @@ function App() {
         </div>
       </nav>
 
-      {/* Control Panel: Add Your Own Clothes Section */}
+      {/* Owner Panel */}
       <div className="admin-section" style={{ background: '#fff', margin: '30px', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>
         <h3 style={{ marginTop: 0, color: '#232f3e' }}>✨ Owner Panel: Add Your Masterpieces</h3>
         <form onSubmit={handleAddProduct} style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', alignItems: 'center' }}>
-          <input type="text" placeholder="Dress Name (e.g. Silk Kurti)" value={newName} onChange={(e) => setNewName(e.target.value)} style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc', flex: 1 }} />
+          <input type="text" placeholder="Dress Name" value={newName} onChange={(e) => setNewName(e.target.value)} style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc', flex: 1, minWidth: '150px' }} />
           <input type="number" placeholder="Price (Max Rs. 4000)" value={newPrice} onChange={(e) => setNewPrice(e.target.value)} style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc', width: '150px' }} />
-          <input type="text" placeholder="Online Image URL (Optional)" value={newImg} onChange={(e) => setNewImg(e.target.value)} style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc', flex: 1 }} />
-          <button type="submit" className="btn" style={{ margin: 0, background: '#232f3e', color: 'white', border: 'none', padding: '10px 20px' }}>Publish Item</button>
+          <input type="text" placeholder="Online Image URL (Optional)" value={newImg} onChange={(e) => setNewImg(e.target.value)} style={{ padding: '8px', borderRadius: '4px', border: '1px solid #ccc', flex: 1, minWidth: '150px' }} />
+          <button type="submit" className="btn" style={{ margin: 0, background: '#131921', color: 'white', border: 'none', padding: '10px 20px', width: 'auto', borderRadius: '20px', cursor: 'pointer' }}>Publish Item</button>
         </form>
       </div>
 
-      {/* Grid Displaying All Products */}
+      {/* 9 Blocks Grid */}
       <div className="product-grid">
         {products.map(product => (
           <div key={product.id} className="product-card">
-            <img src={product.img} alt={product.name} style={{ width: '100%', height: '230px', objectFit: 'cover', borderRadius: '4px' }} />
+            <img src={product.img} alt={product.name} style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '4px' }} />
             <h3 style={{ fontSize: '18px', margin: '10px 0 5px' }}>{product.name}</h3>
             <p style={{ color: '#b12704', fontWeight: 'bold', margin: '0 0 10px' }}>Rs. {product.price}</p>
             <button className="btn" onClick={() => addToCart(product)}>Add to Cart</button>
@@ -83,7 +87,7 @@ function App() {
         ))}
       </div>
 
-      {/* Shopping Cart Section */}
+      {/* Cart Layout */}
       <div className="cart-section">
         <h2>🛒 Client Shopping Cart</h2>
         {cart.length === 0 ? <p>Your cart is empty.</p> : (
@@ -94,7 +98,7 @@ function App() {
                   <h4>{item.name} (x{item.qty})</h4>
                   <p>Rs. {item.price * item.qty}</p>
                 </div>
-                <button className="btn" style={{ backgroundColor: '#ff4d4d', color: 'white', border: 'none' }} onClick={() => removeFromCart(item.id)}>Remove</button>
+                <button className="btn" style={{ backgroundColor: '#ff4d4d', color: 'white', border: 'none', width: 'auto', cursor: 'pointer' }} onClick={() => removeFromCart(item.id)}>Remove</button>
               </div>
             ))}
             <h3 style={{ marginTop: '20px' }}>Total Amount: Rs. {cartTotal}</h3>
