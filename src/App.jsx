@@ -7,7 +7,7 @@ const initialProducts = [
   { id: 2, name: "Black & Maroon Tunic", price: 2800, img: "https://i.postimg.cc/d3c0H32b/black-and-mehroon.jpg" },
   { id: 3, name: "Print Party Shirt", price: 1200, img: "https://i.postimg.cc/m2DxxRdB/print-party-dress.jpg" },
   { id: 4, name: "Elegant Yellow frock", price: 2500, img: "https://i.postimg.cc/vHjNpng7/yellow.jpg" },
-  { id: 5, name: "Wedding Wear", price: 1950, img: "https://i.post img.cc/t4Nm7MvR/wedding-wear.jpg" },
+  { id: 5, name: "Wedding Wear", price: 1950, img: "https://i.postimg.cc/t4Nm7MvR/wedding-wear.jpg" },
   { id: 6, name: "Royal White dress", price: 4000, img: "https://i.postimg.cc/7hSnd5pf/white.jpg" },
   { id: 7, name: "Traditional Pink Printed Frock", price: 2600, img: "https://i.postimg.cc/gJWJ4rq4/pinl.jpg" },
   { id: 8, name: "Blue long frock", price: 1800, img: "https://i.postimg.cc/qRwkLw7k/blue.jpg" },
