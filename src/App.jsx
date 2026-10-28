@@ -3,7 +3,7 @@ import './App.css';
 
 // 9 Beautiful Boutique Products (All under Rs. 4000) with working high-quality images
 const initialProducts = [
-  { id: 1, name: "Red Floral Luxury Dress", price: 3200, img: "https://unsplash.com" },
+  { id: 1, name: "Red Floral Luxury Dress", price: 3200, img: "https://i.postimg.cc/7Z9q3XQH/red-dress.jpg" },
   { id: 2, name: "Black & Maroon Tunic", price: 2800, img: "https://unsplash.com" },
   { id: 3, name: "Leopard Print Party Dress", price: 3500, img: "https://unsplash.com" },
   { id: 4, name: "Elegant Yellow Summer Tunic", price: 2400, img: "https://unsplash.com" },
