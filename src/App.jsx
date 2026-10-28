@@ -3,15 +3,15 @@ import './App.css';
 
 // 9 Beautiful Boutique Products (All under Rs. 4000) with working high-quality images
 const initialProducts = [
-  { id: 1, name: "Red Floral Luxury Dress", price: 3200, img: "https://i.postimg.cc/7Z9q3XQH/red-dress.jpg" },
-  { id: 2, name: "Black & Maroon Tunic", price: 2800, img: "https://unsplash.com" },
-  { id: 3, name: "Leopard Print Party Dress", price: 3500, img: "https://unsplash.com" },
-  { id: 4, name: "Elegant Yellow Summer Tunic", price: 2400, img: "https://unsplash.com" },
-  { id: 5, name: "Pastel Mint Green Kurti", price: 1950, img: "https://unsplash.com" },
-  { id: 6, name: "Royal Blue Silk Anarkali", price: 3900, img: "https://unsplash.com" },
-  { id: 7, name: "Traditional Pink Printed Suit", price: 2600, img: "https://unsplash.com" },
-  { id: 8, name: "Classic White Cotton Kurta", price: 1800, img: "https://unsplash.com" },
-  { id: 9, name: "Designer Velvet Shawl Dupatta", price: 3100, img: "https://unsplash.com" }
+  { id: 1, name: "Red Floral Luxury Dress", price: 3500, img: "https://i.postimg.cc/7Z9q3XQH/red-dress.jpg" },
+  { id: 2, name: "Black & Maroon Tunic", price: 2800, img: "https://i.postimg.cc/d3c0H32b/black-and-mehroon.jpg" },
+  { id: 3, name: "Print Party Shirt", price: 1200, img: "https://i.postimg.cc/m2DxxRdB/print-party-dress.jpg" },
+  { id: 4, name: "Elegant Yellow frock", price: 2500, img: "https://i.postimg.cc/vHjNpng7/yellow.jpg" },
+  { id: 5, name: "Wedding Wear", price: 1950, img: "https://i.post img.cc/t4Nm7MvR/wedding-wear.jpg" },
+  { id: 6, name: "Royal White dress", price: 4000, img: "https://i.postimg.cc/7hSnd5pf/white.jpg" },
+  { id: 7, name: "Traditional Pink Printed Frock", price: 2600, img: "https://i.postimg.cc/gJWJ4rq4/pinl.jpg" },
+  { id: 8, name: "Blue long frock", price: 1800, img: "https://i.postimg.cc/qRwkLw7k/blue.jpg" },
+  { id: 9, name: "Designer Black Velvet frock", price: 3100, img: "https://i.postimg.cc/KYFSHTwR/black.jpg" }
 ];
 
 function App() {
