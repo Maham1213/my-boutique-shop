@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 
-// 9 Beautiful Boutique Products (All under Rs. 4000) with working high-quality images
+// 9 Beautiful Boutique Products (All under Rs. 4000) with your exact working postimg links
 const initialProducts = [
   { id: 1, name: "Red Floral Luxury Dress", price: 3500, img: "https://i.postimg.cc/7Z9q3XQH/red-dress.jpg" },
   { id: 2, name: "Black & Maroon Tunic", price: 2800, img: "https://i.postimg.cc/d3c0H32b/black-and-mehroon.jpg" },
@@ -22,6 +22,11 @@ function App() {
   const [newPrice, setNewPrice] = useState('');
   const [newImg, setNewImg] = useState('');
 
+  // Checkout Form Functional States
+  const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [isOrderPlaced, setIsOrderPlaced] = useState(false);
+
   const handleAddProduct = (e) => {
     e.preventDefault();
     if (!newName || !newPrice) return alert("Please fill Name and Price!");
@@ -41,6 +46,7 @@ function App() {
   };
 
   const addToCart = (product) => {
+    setIsOrderPlaced(false); // Naya item add karne par success banner hat jayega
     const existing = cart.find(item => item.id === product.id);
     if (existing) {
       setCart(cart.map(item => item.id === product.id ? { ...item, qty: item.qty + 1 } : item));
@@ -51,6 +57,18 @@ function App() {
 
   const removeFromCart = (id) => {
     setCart(cart.filter(item => item.id !== id));
+  };
+
+  const handleConfirmOrder = (e) => {
+    e.preventDefault();
+    if (!customerName || !customerPhone) {
+      return alert("Please enter your Name and Phone Number to complete the order!");
+    }
+    
+    setIsOrderPlaced(true);
+    setCart([]); // Order confirm hone par cart clear
+    setCustomerName(''); // Input field reset
+    setCustomerPhone(''); // Input field reset
   };
 
   const cartTotal = cart.reduce((total, item) => total + (item.price * item.qty), 0);
@@ -87,8 +105,17 @@ function App() {
         ))}
       </div>
 
+      {/* Shopping Cart & Checkout Layout */}
       <div className="cart-section">
         <h2>🛒 Client Shopping Cart</h2>
+        
+        {/* Success Message Banner */}
+        {isOrderPlaced && (
+          <div style={{ backgroundColor: '#d4edda', color: '#155724', padding: '15px', borderRadius: '5px', marginBottom: '20px', fontWeight: 'bold', textAlign: 'center', border: '1px solid #c3e6cb' }}>
+            🎉 Order Completed! Thanks for shopping with us.
+          </div>
+        )}
+
         {cart.length === 0 ? <p>Your cart is empty.</p> : (
           <div>
             {cart.map(item => (
@@ -100,7 +127,26 @@ function App() {
                 <button className="btn" style={{ backgroundColor: '#ff4d4d', color: 'white', border: 'none', width: 'auto' }} onClick={() => removeFromCart(item.id)}>Remove</button>
               </div>
             ))}
-            <h3 style={{ marginTop: '20px' }}>Total Amount: Rs. {cartTotal}</h3>
+            <h3 style={{ marginTop: '20px', marginBottom: '30px' }}>Total Amount: Rs. {cartTotal}</h3>
+
+            {/* Interactive Confirm Order Section */}
+            <div style={{ background: '#f9f9f9', padding: '20px', borderRadius: '8px', border: '1px solid #ddd', marginTop: '20px' }}>
+              <h3 style={{ marginTop: 0, color: '#131921' }}>📋 Confirm Order Details</h3>
+              <form onSubmit={handleConfirmOrder} style={{ display: 'flex', flexDirection: 'column', gap: '15px', maxWidth: '400px' }}>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Your Name:</label>
+                  <input type="text" placeholder="Enter full name" value={customerName} onChange={(e) => setCustomerName(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }} required />
+                </div>
+                <div>
+                  <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Phone Number:</label>
+                  <input type="tel" placeholder="Enter phone number" value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }} required />
+                </div>
+                <button type="submit" style={{ backgroundColor: '#28a745', color: 'white', border: 'none', padding: '12px', borderRadius: '4px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer' }}>
+                  Complete Order
+                </button>
+              </form>
+            </div>
+
           </div>
         )}
       </div>
